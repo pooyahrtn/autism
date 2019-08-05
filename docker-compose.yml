@@ -1,0 +1,29 @@
+version: '3'
+services:
+
+  autismweb:
+    container_name: "autismweb"
+    build: 
+      context: ./autism-web
+    ports: 
+      - "3000:3000"
+    volumes: 
+      - ./autism-web/pages:/usr/src/app/pages
+      - ./autism-web/components:/usr/src/app/components
+    command: >
+      npm run dev
+    
+
+  dautism:
+    container_name: 'dautism'
+    build: 
+      context: ./dautism
+    volumes: 
+      - ./dautism:/code/
+    environment: 
+      - PORT=8000
+    ports: 
+      - "8000:8000"
+
+volumes: 
+  media:

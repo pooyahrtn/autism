@@ -1,0 +1,177 @@
+// RESPONSIVE BREAKPOINTS
+$bp-largest: 75em; // 1200px
+$bp-large: 62.5em; // 1000px
+$bp-medium: 50em; // 800px;
+$bp-small: 37.5em; // 600px;
+$shadow-light: 0 2rem 5rem rgba(0, 0, 0, 0.06);
+$color-black: rgb(0, 0, 0);
+$color-primary: #55c57a;
+$color-primary-light: #7ed56f;
+$color-primary-dark: #28b485;
+
+@mixin respond($breakpoint) {
+  @if $breakpoint == phone {
+    @media only screen and (max-width: 37.5em) {
+      @content;
+    } //600px
+  }
+  @if $breakpoint == tab-port {
+    @media only screen and (max-width: 56.25em) {
+      @content;
+    } //900px
+  }
+  @if $breakpoint == tab-land {
+    @media only screen and (max-width: 75em) {
+      @content;
+    } //1200px
+  }
+  @if $breakpoint == big-desktop {
+    @media only screen and (min-width: 112.5em) {
+      @content;
+    } //1800
+  }
+}
+
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+}
+
+html {
+  // This defines what 1rem is
+  font-size: 62.5%; //1 rem = 10px; 10px/16px = 62.5%
+
+  @include respond(tab-land) {
+    // width < 1200?
+    font-size: 56.25%; //1 rem = 9px, 9/16 = 50%
+  }
+
+  @include respond(tab-port) {
+    // width < 900?
+    font-size: 50%; //1 rem = 8px, 8/16 = 50%
+  }
+
+  @include respond(big-desktop) {
+    font-size: 75%; //1rem = 12, 12/16
+  }
+}
+
+body {
+  box-sizing: border-box;
+
+  @include respond(tab-port) {
+    padding: 0;
+  }
+}
+
+.screen {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  flex-direction: column;
+
+  @media only screen and (orientation: landscape) {
+    flex-direction: row;
+  }
+}
+
+.card {
+  border-radius: 10px;
+  box-shadow: $shadow-light;
+  background-color: white;
+  width: 40%;
+  height: 80%;
+  overflow: hidden;
+  display: flex;
+  border-width: 0;
+
+  transition: all 0.2s;
+
+  @media only screen and (orientation: portrait) {
+    width: 80%;
+    height: 40%;
+  }
+
+  &__img {
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+  }
+
+  &:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.2);
+  }
+
+  &:active,
+  &:focus {
+    outline: none;
+    transform: translateY(-1px);
+    box-shadow: 0 0.5rem 1rem rgba($color-black, 0.2);
+  }
+}
+
+.popup {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-image: linear-gradient(to right bottom, $color-primary-light, $color-primary-dark);
+  color: white;
+  font-size: 4rem;
+  text-align: center;
+  direction: rtl;
+  flex-direction: column;
+  z-index: 100;
+
+  &__ok {
+    border-width: 1px;
+    border: none;
+    background-color: white;
+    margin: 4rem 4rem;
+    padding: 1rem 5rem;
+    font-weight: bold;
+    border-radius: 10rem;
+    font-size: 2.5rem;
+  }
+  &__description {
+    font-size: 3rem;
+    margin: 3rem 1.5rem;
+  }
+}
+
+.hidden_on_landscape {
+  @media only screen and (orientation: landscape) {
+    visibility: hidden;
+  }
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  margin: 2rem;
+  width: 80%;
+  max-width: 40rem;
+
+  &__label {
+    font-size: 2.5rem;
+    display: flex;
+    align-items: center;
+    margin: 1rem;
+  }
+  &__textinput {
+    margin: 1rem;
+    padding: 1rem 2rem;
+    border-width: 0;
+    border-radius: 2rem;
+    font-size: 1.5rem;
+    flex: 1;
+  }
+}
