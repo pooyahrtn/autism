@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import "../sass/main.scss";
 import Router from "next/router";
 import Page from "../components/Page";
@@ -13,6 +13,7 @@ export default () => {
   const [postLoading, setPostLoading] = useState(false);
   const [step, setStep] = useState(0);
   const [data, setData] = useState();
+  const soundRef = useRef();
 
   useEffect(() => {
     const url = "http://134.209.202.175:8000";
@@ -22,7 +23,7 @@ export default () => {
         setData(data);
         setLoading(false);
       });
-  }, []);
+  }, [step]);
 
   if (loading) {
     return <Loading />;
@@ -47,12 +48,21 @@ export default () => {
 
   const { first_image, second_image, sound_one } = posts[step];
 
+  const onPlayPressed = () => {
+    if (soundRef.current) {
+      const { current } = soundRef;
+      current.src = sound_one;
+      current.play();
+      // console.log(soundRef);
+    }
+  };
+
   return (
     <Page>
       <audio
         src={sound_one}
-        autoPlay
         loop
+        ref={soundRef}
         // playsinline
         // onEnded="this.play();"
       />
@@ -61,12 +71,14 @@ export default () => {
         onClick={() => onItemClick(0)}
         onLoad={() => setPostLoading(false)}
       />
+      <button className="play_button" onClick={onPlayPressed}>
+        پخش صدا
+      </button>
       <Card
         image={second_image}
         onClick={() => onItemClick(1)}
         onLoad={() => setPostLoading(false)}
       />
-      {postLoading && <Loading />}
     </Page>
   );
 };
