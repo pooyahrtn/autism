@@ -66,6 +66,7 @@ export default () => {
         onClick={() => onItemClick(1)}
         onLoad={() => setPostLoading(false)}
       />
+      {postLoading && <Loading />}
     </Page>
   );
 };
