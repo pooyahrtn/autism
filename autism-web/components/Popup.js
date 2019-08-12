@@ -1,20 +1,15 @@
+import Link from "next/link";
 export default props => {
-    const {
-        onClick,
-        title,
-        children,
-    } = props;
-    return (
-        <div className="popup">
-            <strong>{title}</strong>
-            {children}
-            {
-                onClick && (
-                    <button className="popup__ok" onClick={onClick}>
-                        خب
-                    </button>
-                )
-            }
-        </div>
-    );
-}
+  const { title, children, nextPage } = props;
+  return (
+    <div className="popup">
+      <strong>{title}</strong>
+      {children}
+      {nextPage && (
+        <Link href={nextPage}>
+          <button className="popup__ok">خب</button>
+        </Link>
+      )}
+    </div>
+  );
+};

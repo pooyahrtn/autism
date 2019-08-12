@@ -1,7 +1,7 @@
 import "../sass/main.scss";
 import Page from "../components/Page";
-import Welcome from "../components/Welcome";
+import Tutorial from "../components/Tutorial";
 
 export default () => {
-  return <Welcome nextPage="user"/>;
+  return <Tutorial nextPage="test" />;
 };
