@@ -13,6 +13,7 @@ export default () => {
   const [postLoading, setPostLoading] = useState(false);
   const [step, setStep] = useState(0);
   const [data, setData] = useState();
+  const [playSound, setPlaySound] = useState(false);
   const soundRef = useRef();
 
   useEffect(() => {
@@ -50,22 +51,13 @@ export default () => {
   const { first_image, second_image, sound_one } = posts[step];
 
   const onPlayPressed = () => {
-    if (soundRef.current) {
-      const { current } = soundRef;
-      current.src = sound_one;
-      current.play();
-      // console.log(soundRef);
+    if (soundRef.current.play) {
+      soundRef.current.play();
     }
   };
 
   return (
     <Page>
-      <audio
-        src={sound_one}
-        ref={soundRef}
-        // playsinline
-        // onEnded="this.play();"
-      />
       <Card
         image={first_image}
         onClick={() => onItemClick(0)}
@@ -74,6 +66,14 @@ export default () => {
       <button className="play_button" onClick={onPlayPressed}>
         پخش صدا
       </button>
+
+      <audio
+        src={sound_one}
+        ref={soundRef}
+        // playsinline
+        // onEnded="this.play();"
+      />
+
       <Card
         image={second_image}
         onClick={() => onItemClick(1)}
