@@ -17,6 +17,7 @@ export default () => {
 
   useEffect(() => {
     const url = "http://134.209.202.175:8000";
+    setLoading(true);
     fetch(`${url}/exams/exams/0/`)
       .then(res => res.json())
       .then(data => {
@@ -61,7 +62,6 @@ export default () => {
     <Page>
       <audio
         src={sound_one}
-        loop
         ref={soundRef}
         // playsinline
         // onEnded="this.play();"
