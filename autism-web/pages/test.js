@@ -70,8 +70,6 @@ export default () => {
       <audio
         src={sound_one}
         ref={soundRef}
-        // playsinline
-        // onEnded="this.play();"
       />
 
       <Card
