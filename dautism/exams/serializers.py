@@ -33,7 +33,7 @@ class ExperimentSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = models.Experiment
-        fields = ('exam', 'start_time', 'end_time', 'name', 'age', 'answers')
+        fields = ('exam', 'start_time', 'end_time', 'name', 'age', 'answers',  'has_autism', 'has_background')
 
     def create(self, validated_data):
         answers_data = validated_data.pop('answers')

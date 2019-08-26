@@ -17,6 +17,8 @@ class Experiment(models.Model):
     end_time = models.DateTimeField(null=False, blank=False)
     name = models.CharField(max_length=100, blank=True)
     age = models.IntegerField(null=True, blank=True)
+    has_autism = models.BooleanField(default=False)
+    has_background = models.BooleanField(default=False)
 
     def __str__(self):
         return '{}: {} {}'.format(self.pk, self.name, self.age)

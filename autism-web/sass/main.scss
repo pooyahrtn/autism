@@ -158,8 +158,8 @@ body {
   display: flex;
   flex-direction: column;
   margin: 2rem;
-  width: 80%;
-  max-width: 40rem;
+  width: 50%;
+  max-width: 60;
 
   &__label {
     font-size: 2.5rem;
@@ -175,16 +175,19 @@ body {
     font-size: 1.5rem;
     flex: 1;
   }
-}
-
-.play_button {
-  border-width: 1px;
-  border: none;
-  background-color: #28b485;
-  color: white;
-  font-weight: bold;
-  margin: 4rem 4rem;
-  padding: 2rem 3rem;
-  border-radius: 10rem;
-  font-size: 2rem;
+  &__radio {
+    color: black;
+    font-size: 2rem;
+    margin: 2rem;
+    &_container {
+      display: block;
+    }
+    &_item {
+      margin: 2rem;
+      display: inline-block;
+      &_text {
+        margin: 1rem;
+      }
+    }
+  }
 }
