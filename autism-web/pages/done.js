@@ -21,7 +21,8 @@ function transferBody(body) {
 export default () => {
   console.log(transferBody(state));
   useEffect(() => {
-    const url = "http://localhost:8000";
+    const url = process.env.api;
+    console.log({ url });
     fetch(`${url}/exams/experiment/`, {
       method: "POST",
       body: transferBody(state),

@@ -3,8 +3,8 @@ services:
    
   autismweb:
     environment: 
-      - URL=http://134.209.202.175:8000
-      - NODE_ENV=production
+      - "URL=http://134.209.202.175:8000"
+      - "NODE_ENV=production"
     command: >
       npm start
     ports: 

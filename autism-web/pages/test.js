@@ -23,7 +23,7 @@ export default () => {
   const [playSound, setPlaySound] = useState(false);
   const soundRef = useRef();
   useEffect(() => {
-    const url = "http://localhost:8000";
+    const url = process.env.api;
     setLoading(true);
     fetch(`${url}/exams/exams/0/`)
       .then(res => res.json())
