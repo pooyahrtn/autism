@@ -10,6 +10,7 @@ services:
     volumes: 
       - ./autism-web/pages:/usr/src/app/pages
       - ./autism-web/components:/usr/src/app/components
+      - ./autism-web/sass:/usr/src/app/sass
 
 
   dautism:
